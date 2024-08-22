@@ -3,12 +3,9 @@ import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main className={styles.container}>
       <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
+        <p>File System managment</p>
         <div>
           <a
             href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
@@ -17,78 +14,99 @@ export default function Home() {
           >
             By{" "}
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
+              src="/ucompensar-logo.png"
+              alt="Ucompensar Logo"
+              className={styles.UcompensarLogo}
+              width={120}
+              height={36}
               priority
             />
           </a>
         </div>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <div className={styles.section}>
+        <h1>Proyecto: Sistema de Gestión de Archivos Jerárquico</h1>
+        <h3>Descripción del Proyecto:</h3>
+        <p>
+          Desarrollar un sistema de gestión de archivos que simule una estructura
+          de directorios y archivos utilizando árboles binarios. Este sistema
+          permitirá a los usuarios crear, eliminar y navegar a través de
+          directorios y archivos, y al mismo tiempo, ofrecerá funcionalidades
+          avanzadas como el cálculo de la altura del árbol de directorios, el
+          conteo de archivos y directorios, la evaluación del peso de un
+          directorio, y la comparación de dos estructuras de directorios para
+          verificar si son similares.
+        </p>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+        <h2>Requerimientos Específicos:</h2>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        <h3>1. Función para devolver la altura de un árbol:</h3>
+        <ul>
+          <li>
+            <p>
+              Implementa una función que calcule la altura de la estructura de
+              directorios (es decir, la profundidad máxima desde la raíz hasta
+              cualquier hoja).
+            </p>
+          </li>
+          <li>
+            <p>
+              Esta función será útil para determinar la profundidad del sistema
+              de directorios.
+            </p>
+          </li>
+        </ul>
+        <h3>2. Algoritmo para calcular el número de nodos:</h3>
+        <ul>
+          <li>
+            <p>
+              Crea una función que recorra el árbol de directorios y archivos, y
+              devuelva el número total de nodos (donde un nodo puede representar
+              un directorio o un archivo).
+            </p>
+          </li>
+          <li>
+            <p>
+              Si el árbol está vacío, debería devolver 0. Si tiene nodos, cuenta
+              todos los archivos y directorios.
+            </p>
+          </li>
+        </ul>
+        <h3>3. Algoritmo para devolver el peso de un árbol:</h3>
+        <ul>
+          <li>
+            <p>
+              Implementa una función que calcule el "peso" de un directorio,
+              definido como la suma de los tamaños de todos los archivos
+              contenidos en ese directorio y sus subdirectorios.
+            </p>
+          </li>
+          <li>
+            <p>
+              Esta función será útil para determinar la profundidad del sistema
+              de directorios.
+            </p>
+          </li>
+        </ul>
+        <h3>4. Función para comprobar si dos árboles son similares:</h3>
+        <ul>
+          <li>
+            <p>
+              Diseña una función que compare dos estructuras de directorios y
+              determine si son similares, es decir, si ambos tienen la misma
+              estructura (aunque los nombres de los archivos y directorios
+              puedan diferir).
+            </p>
+          </li>
+          <li>
+            <p>
+              Dos árboles son similares si ambos son nulos, o si tienen una
+              estructura idéntica, con subárboles derechos e izquierdos
+              similares.
+            </p>
+          </li>
+        </ul>
       </div>
     </main>
   );
