@@ -5,21 +5,36 @@ import { defaultFileSystem } from '../lib/fileSystem';
 
 function FileSystemNode({ node, onDelete, onNavigate, currentPath }) {
     const fullPath = [...currentPath, node.name].join('/');
+    const isSelected = false; // Puedes implementar la selección si lo deseas
+
     return (
-        <div style={{ marginLeft: '20px' }}>
-            <span onClick={() => onNavigate(node, fullPath)}>
-                {node.isDirectory ? '📁' : '📄'} {node.name}
+        <div 
+            style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                padding: '5px',
+                backgroundColor: isSelected ? '#e6f3ff' : 'transparent',
+                cursor: 'pointer'
+            }}
+            onClick={() => onNavigate(node, fullPath)}
+        >
+            <span style={{ marginRight: '10px' }}>
+                {node.isDirectory ? '📁' : '📄'}
             </span>
-            <button onClick={() => onDelete(fullPath)}>Eliminar</button>
-            {node.isDirectory && node.children.map((child, index) => (
-                <FileSystemNode 
-                    key={index} 
-                    node={child} 
-                    onDelete={onDelete} 
-                    onNavigate={onNavigate}
-                    currentPath={[...currentPath, node.name]}
-                />
-            ))}
+            <span style={{ flexGrow: 1 }}>{node.name}</span>
+            <span style={{ marginRight: '20px' }}>
+                {new Date().toLocaleDateString()} {/* Usamos la fecha actual como ejemplo */}
+            </span>
+            <span>{node.isDirectory ? '' : `${node.size} KB`}</span>
+            <button 
+                onClick={(e) => { 
+                    e.stopPropagation(); 
+                    onDelete(fullPath);
+                }}
+                style={{ marginLeft: '10px' }}
+            >
+                Eliminar
+            </button>
         </div>
     );
 }
@@ -73,41 +88,58 @@ export default function FileManager() {
     };
 
     return (
-        <div>
-            <h1>Gestor de Archivos</h1>
-            <p>Ruta actual: /{currentPath.join('/')}</p>
-            <button onClick={handleBack} disabled={currentPath.length === 0}>Atrás</button>
+        <div style={{ fontFamily: 'Arial, sans-serif' }}>
+            <div style={{ display: 'flex', alignItems: 'center', padding: '10px', backgroundColor: '#f0f0f0' }}>
+                <button onClick={handleBack} disabled={currentPath.length === 0}>⬅️ Back</button>
+                <span style={{ marginLeft: '20px' }}>/{currentPath.join('/')}</span>
+            </div>
             
-            <h2>Contenido:</h2>
-            
-            <FileSystemNode 
-                node={getCurrentNode()} 
-                onDelete={handleDelete}
-                onNavigate={handleNavigate}
-                currentPath={currentPath}
-            />
+            <div style={{ display: 'flex' }}>
+                <div style={{ width: '200px', padding: '10px', borderRight: '1px solid #ccc' }}>
+                    {/* Aquí puedes agregar una vista de árbol si lo deseas */}
+                    <div>Files</div>
+                    <div>Documents</div>
+                    <div>Downloads</div>
+                    <div>Music</div>
+                    <div>Pictures</div>
+                    <div>Videos</div>
+                </div>
+                
+                <div style={{ flexGrow: 1, padding: '10px' }}>
+                    <div style={{ display: 'flex', fontWeight: 'bold', borderBottom: '1px solid #ccc', padding: '5px' }}>
+                        <span style={{ flexGrow: 1 }}>Name</span>
+                        <span style={{ width: '150px' }}>Modified</span>
+                        <span style={{ width: '100px' }}>Size</span>
+                    </div>
+                    {getCurrentNode().children.map((child, index) => (
+                        <FileSystemNode 
+                            key={index} 
+                            node={child} 
+                            onDelete={handleDelete}
+                            onNavigate={handleNavigate}
+                            currentPath={currentPath}
+                        />
+                    ))}
+                </div>
+            </div>
 
-            <h2>Crear nuevo elemento:</h2>
-            <input 
-                type="text" 
-                value={newItemName} 
-                onChange={(e) => setNewItemName(e.target.value)}
-                placeholder="Nombre del nuevo elemento"
-            />
-            <label>
+            <div style={{ padding: '10px', borderTop: '1px solid #ccc' }}>
                 <input 
-                    type="checkbox" 
-                    checked={isDirectory} 
-                    onChange={(e) => setIsDirectory(e.target.checked)}
+                    type="text" 
+                    value={newItemName} 
+                    onChange={(e) => setNewItemName(e.target.value)}
+                    placeholder="New item name"
                 />
-                Es un directorio
-            </label>
-            <button onClick={handleCreate}>Crear</button>
-
-            <h2>Estadísticas:</h2>
-            <p>Altura del árbol: {defaultFileSystem.getHeight()}</p>
-            <p>Número de nodos: {defaultFileSystem.countNodes()}</p>
-            <p>Peso total: {defaultFileSystem.getWeight()} bytes</p>
+                <label style={{ marginLeft: '10px' }}>
+                    <input 
+                        type="checkbox" 
+                        checked={isDirectory} 
+                        onChange={(e) => setIsDirectory(e.target.checked)}
+                    />
+                    Directory
+                </label>
+                <button onClick={handleCreate} style={{ marginLeft: '10px' }}>Create</button>
+            </div>
         </div>
     );
 }
