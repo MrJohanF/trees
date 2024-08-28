@@ -65,3 +65,35 @@
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
+
+
+.dropdown {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown_button {
+  background-color: #4caf4f00;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown_list {
+  background-color: rgba(27, 25, 25, 0);
+  margin-top: 5px;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.dropdown_item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown_item:hover {
+  background-color: #001aff;
+}
