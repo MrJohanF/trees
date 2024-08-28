@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import FileManager from "./pages/file-manager";
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
         <p>File System managment</p>
         <div>
           <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            href="https://ucompensar.edu.co/"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -108,6 +109,10 @@ export default function Home() {
           </li>
         </ul>
       </div>
+
+
+      <FileManager />
+
     </main>
   );
 }
