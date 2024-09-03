@@ -61,7 +61,7 @@ function FileTreeView({
     onNavigate(fullPath);
   };
 
-  // Check if this node is the current directory
+  // Revisar si el nodo actual es el directorio actual
   const isCurrentDirectory =
     JSON.stringify(fullPath) === JSON.stringify(currentPath);
 
@@ -149,7 +149,7 @@ export default function FileManager() {
 
   const handleDelete = (fullPath) => {
     if (defaultFileSystem.deleteNode(fullPath.join("/"))) {
-      forceUpdate({}); // Force re-render only if deletion was successful
+      forceUpdate({}); // Forzar re-render solo si se elimina el nodo
     }
   };
 
@@ -174,7 +174,7 @@ export default function FileManager() {
         <button onClick={handleBack} disabled={currentPath.length === 0}>
           ⬅️ Back
         </button>
-        <span style={{ marginLeft: "20px" }}>/{currentPath.join("/")}</span>
+        <span style={{marginLeft: "20px", color: "black" }}>/{currentPath.join("/")}</span>
       </div>
 
       <div style={{ display: "flex" }}>
@@ -212,7 +212,7 @@ export default function FileManager() {
               key={index}
               node={child}
               onDelete={handleDelete}
-              onNavigate={(node) => handleNavigate([...currentPath, node.name])}
+              onNavigate={handleNavigate}
               currentPath={currentPath}
             />
           ))}

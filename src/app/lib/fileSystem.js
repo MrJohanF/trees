@@ -1,4 +1,3 @@
-// lib/fileSystem.js
 
 class FileNode {
   constructor(name, isDirectory, size = 0) {
@@ -90,7 +89,7 @@ export class FileSystem {
     return current;
   }
 
-   // Función deleteNode mejorada
+   // Función deleteNode 
    deleteNode(path) {
     const parts = path.split("/").filter(Boolean);
     let current = this.root;
@@ -133,5 +132,5 @@ export class FileSystem {
 
 }
 
-// Crea y exporta una instancia por defecto
+// Crea y exporta una instancia de FileSystem por defecto
 export const defaultFileSystem = new FileSystem();
