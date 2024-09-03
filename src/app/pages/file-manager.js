@@ -9,6 +9,12 @@ function FileSystemNode({ node, onDelete, onNavigate, currentPath }) {
     : [node.name];
   const isSelected = false;
 
+  const handleClick = () => {
+    if (node.isDirectory) {
+      onNavigate(fullPath);
+    }
+  };
+
   return (
     <div
       style={{
@@ -16,9 +22,9 @@ function FileSystemNode({ node, onDelete, onNavigate, currentPath }) {
         alignItems: "center",
         padding: "5px",
         backgroundColor: isSelected ? "#6832a8" : "transparent",
-        cursor: "pointer",
+        cursor: node.isDirectory ? "pointer" : "default",
       }}
-      onClick={() => onNavigate(fullPath)}
+      onClick={handleClick}
     >
       <span style={{ marginRight: "10px" }}>
         {node.isDirectory ? "📁" : "📄"}
@@ -58,10 +64,11 @@ function FileTreeView({
   };
 
   const handleClick = () => {
-    onNavigate(fullPath);
+    if (node.isDirectory) {
+      onNavigate(fullPath);
+    }
   };
 
-  // Revisar si el nodo actual es el directorio actual
   const isCurrentDirectory =
     JSON.stringify(fullPath) === JSON.stringify(currentPath);
 
@@ -111,6 +118,7 @@ function FileTreeView({
   );
 }
 
+
 export default function FileManager() {
   const [currentPath, setCurrentPath] = useState([]);
   const [newItemName, setNewItemName] = useState("");
@@ -132,9 +140,9 @@ export default function FileManager() {
     let current = defaultFileSystem.root;
     for (let name of currentPath) {
       current = current.children.find((child) => child.name === name);
-      if (!current) break;
+      if (!current || !current.isDirectory) break;
     }
-    return current || defaultFileSystem.root;
+    return current && current.isDirectory ? current : defaultFileSystem.root;
   };
 
   const handleCreate = () => {
@@ -154,6 +162,14 @@ export default function FileManager() {
   };
 
   const handleNavigate = (newPath) => {
+    let current = defaultFileSystem.root;
+    for (let name of newPath) {
+      current = current.children.find((child) => child.name === name);
+      if (!current || !current.isDirectory) {
+        console.log("No se puede navegar a la ruta:", newPath);
+        return;
+      }
+    }
     setCurrentPath(newPath);
   };
 
