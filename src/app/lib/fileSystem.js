@@ -30,7 +30,7 @@ export class FileSystem {
   }
 
   // 2. Algoritmo para calcular el número de nodos
-  countNodes(node = this.root) {
+ countNodes(node = this.root) {
     if (!node) {
       return 0;
     }
@@ -134,3 +134,7 @@ export class FileSystem {
 
 // Crea y exporta una instancia de FileSystem por defecto
 export const defaultFileSystem = new FileSystem();
+export const getHeight = FileSystem.prototype.getHeight;
+export const countNodes = FileSystem.prototype.countNodes;
+export const getWeight = FileSystem.prototype.getWeight;
+export const areSimilar = FileSystem.prototype.areSimilar;

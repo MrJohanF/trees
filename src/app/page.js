@@ -1,8 +1,15 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import FileManager from "./pages/file-manager";
+import { getHeight, countNodes, getWeight, areSimilar } from "./lib/fileSystem";
+import CodeBlock from "./components/codeBlock";
 
 export default function Home() {
+  const heightCode = getHeight.toString();
+  const countNodesCode = countNodes.toString();
+  const getWeightCode = getWeight.toString();
+  const areSimilarCode = areSimilar.toString();
+
   return (
     <main className={styles.container}>
       <div className={styles.description}>
@@ -30,9 +37,9 @@ export default function Home() {
         <h1>Proyecto: Sistema de Gestión de Archivos Jerárquico</h1>
         <h3>Descripción del Proyecto:</h3>
         <p>
-          Desarrollar un sistema de gestión de archivos que simule una estructura
-          de directorios y archivos utilizando árboles binarios. Este sistema
-          permitirá a los usuarios crear, eliminar y navegar a través de
+          Desarrollar un sistema de gestión de archivos que simule una
+          estructura de directorios y archivos utilizando árboles binarios. Este
+          sistema permitirá a los usuarios crear, eliminar y navegar a través de
           directorios y archivos, y al mismo tiempo, ofrecerá funcionalidades
           avanzadas como el cálculo de la altura del árbol de directorios, el
           conteo de archivos y directorios, la evaluación del peso de un
@@ -58,6 +65,9 @@ export default function Home() {
             </p>
           </li>
         </ul>
+
+        <CodeBlock language="javascript" code={countNodesCode} />
+
         <h3>2. Algoritmo para calcular el número de nodos:</h3>
         <ul>
           <li>
@@ -74,6 +84,9 @@ export default function Home() {
             </p>
           </li>
         </ul>
+
+        <CodeBlock language="javascript" code={heightCode} />
+
         <h3>3. Algoritmo para devolver el peso de un árbol:</h3>
         <ul>
           <li>
@@ -90,6 +103,9 @@ export default function Home() {
             </p>
           </li>
         </ul>
+
+        <CodeBlock language="javascript" code={getWeightCode} />
+
         <h3>4. Función para comprobar si dos árboles son similares:</h3>
         <ul>
           <li>
@@ -108,13 +124,18 @@ export default function Home() {
             </p>
           </li>
         </ul>
+
+       
+        <CodeBlock language="javascript" code={areSimilarCode} />
+
       </div>
 
-      <h2 style={{marginTop: "2rem", marginBottom: "2rem"}}>Interfaz de Gestion de Archivos</h2>
 
+      <h2 style={{ marginTop: "2rem", marginBottom: "2rem" }}>
+        Interfaz de Gestion de Archivos
+      </h2>
 
       <FileManager />
-
     </main>
   );
 }
