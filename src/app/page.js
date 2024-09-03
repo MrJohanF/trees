@@ -110,6 +110,8 @@ export default function Home() {
         </ul>
       </div>
 
+      <h2 style={{marginTop: "2rem", marginBottom: "2rem"}}>Interfaz de Gestion de Archivos</h2>
+
 
       <FileManager />
 
