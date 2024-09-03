@@ -46,6 +46,10 @@
   margin-bottom: 1rem;
 }
 
+.section ul {
+  margin-bottom: 0.2rem;
+}
+
 .section ul li {
   margin-left: 2rem;
   margin-top: 0.5rem;
@@ -63,6 +67,7 @@
 
 .section h3 {
   font-size: 1.2rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
